@@ -1,0 +1,71 @@
+import sucursales.*
+import comercio.*
+
+/*IMPORTANTE: hice los test que aparecen en el enunciado, están agrupados en solo dos grupos */
+
+describe "test de remeras" {
+	/*remeras */	
+	const remeraLisa01 = new RemeraLisa (talle = 40, esDeColor = false)
+	const remeraLisa02 = new RemeraLisa (talle = 40, esDeColor = true)
+	const remeraLisa03 = new RemeraLisa (talle = 42, esDeColor = false)
+	const remeraBordada01 = new RemeraBordada(talle = 42, esDeColor = false, coloresDeBordado = #{"rojo", "negro"}) 
+	const remeraBordada02 = new RemeraBordada(talle = 42, esDeColor = true, coloresDeBordado = #{"rojo", "negro"})
+	const remeraSublimada01 = new RemeraSublimada(talle = 42, esDeColor = false, altoDeSublimado = 10, anchoDeSublimado = 10, tieneDerechoDeAutor = false)
+	/*remera de disney */
+	const remeraSublimada02 = new RemeraSublimada(talle = 42, esDeColor = false, altoDeSublimado = 10, anchoDeSublimado = 15, tieneDerechoDeAutor = true)
+	
+	/*sucursales */
+	const flores = new Sucursal(pedidoMinimoParaDescuento = 10)
+	const avellaneda = new Sucursal(pedidoMinimoParaDescuento = 3)
+	
+	/*pedidos */
+	var pedido01 = new Pedido (cantidadDePedido = 5, sucursal = flores, remeraDePedido = remeraLisa03)
+	var pedido02 = new Pedido (cantidadDePedido = 5, sucursal = avellaneda, remeraDePedido = remeraLisa03)
+	/*pedidos de disney */
+	var pedido03 = new Pedido (cantidadDePedido = 4, sucursal = flores, remeraDePedido = remeraSublimada02)
+	var pedido04 = new Pedido (cantidadDePedido = 4, sucursal = avellaneda, remeraDePedido = remeraSublimada02)
+	
+	
+	
+	test "precios de remeras" {
+		assert.equals(remeraLisa01.costoDeRemera(), 80)
+		assert.equals(remeraLisa02.costoDeRemera(), 88)
+		assert.equals(remeraBordada01.costoDeRemera(), 120)
+		assert.equals(remeraBordada02.costoDeRemera(), 130)
+		costoDeDerechosDeAutor.costoDeDerecho(100)
+		assert.equals(remeraSublimada01.costoDeRemera(), 150)
+		/*remera de disney */
+		assert.equals(remeraSublimada02.costoDeRemera(), 275)
+		costoDeDerechosDeAutor.costoDeDerecho(90)
+		assert.equals(remeraSublimada02.costoDeRemera(), 265)
+	}
+	
+	test "pedidos de sucursales" {
+		assert.equals(pedido01.precioDePedido(),500)
+	   	assert.equals(pedido02.precioDePedido(),450)
+	   	/*pedido de disney */
+		costoDeDerechosDeAutor.costoDeDerecho(100)
+	    assert.equals(pedido03.precioDePedido(),1100)
+	   	assert.equals(pedido04.precioDePedido(),880)
+	}
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
